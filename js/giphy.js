@@ -164,7 +164,13 @@ GiphyClient.prototype._fetch = function(query, offset) {
             }
             return results;
         })
-        .finally(function() { if (timer) clearTimeout(timer); });
+        .then(function(results) {
+            if (timer) clearTimeout(timer);
+            return results;
+        }, function(err) {
+            if (timer) clearTimeout(timer);
+            throw err;
+        });
 };
 
 GiphyClient.prototype.fetchGifs = function() {

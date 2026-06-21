@@ -79,7 +79,7 @@ App.prototype.loadGifs = function() {
             self.view.setStatus(gifs.length ? "" : "No results — try refreshing.", gifs.length ? "" : "err");
         })
         .catch(function(err) { self.view.setStatus("Error: " + err, "err"); })
-        .finally(function()  { self.view.setLoading(false); });
+        .then(function() { self.view.setLoading(false); });
 };
 
 App.prototype.selectGif = function(gif) {
@@ -94,7 +94,7 @@ App.prototype.selectGif = function(gif) {
             self.view.setStatus("Applied: " + gif.title, "ok");
         })
         .catch(function(err) { self.view.setStatus("Error: " + err, "err"); })
-        .finally(function()  { self.view.setLoading(false); });
+        .then(function() { self.view.setLoading(false); });
 };
 
 App.prototype.downloadUrl = function(url) {
